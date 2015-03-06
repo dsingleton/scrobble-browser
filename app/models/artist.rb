@@ -3,4 +3,5 @@ class Artist < ActiveRecord::Base
   friendly_id :name, use: :finders
 
   has_many :tracks
+  has_many :albums, -> { uniq }, through: :tracks
 end

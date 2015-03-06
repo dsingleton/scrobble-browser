@@ -1,0 +1,12 @@
+<h1>
+  <%= link_to @artist.name, @artist %>
+  &ndash; <%= @album.name %>
+</h1>
+
+<h2>Tracks</h2>
+<ol>
+<% @album.tracks.each do |track| %>
+  <li><%= link_to track.name, [@artist, track] %></li>
+<% end %>
+</ol>
+
