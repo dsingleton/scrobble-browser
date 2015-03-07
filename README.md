@@ -6,7 +6,7 @@ Browse and explore your [exported scrobbles](https://secure.last.fm/settings/dat
 
 Install dependencies with `bundle install` and run with `bundle exec rails server`.
 
-This is a pretty standard Rails app.
+It comes with some example data, which you can load with `rake db:fixtures:load`
 
 ## Importing Scrobbles
 

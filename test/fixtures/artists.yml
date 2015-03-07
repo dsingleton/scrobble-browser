@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  mbid: MyString
+dntel:
+  name: Dntel
+  mbid: 1517c06e-2fe2-452a-981c-b3d9077e0520
 
-two:
-  name: MyString
-  mbid: MyString
+fka-twigs:
+  name: FKA twigs
+  mbid: 1e4e9db7-5068-4a9c-bdd0-5777e47172c8

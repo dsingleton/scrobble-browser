@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  mbid: MyString
-
-two:
-  name: MyString
-  mbid: MyString
+dntel-album:
+  name: Life Is Full of Possibilities
+  mbid: 424ed99f-0481-433d-bc16-27d510c5f8d6
