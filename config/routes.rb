@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :scrobbles, only: [:index, :show]
+
   resources :users, only: [:index, :show]
 
   resources :artists, only: [:index, :show] do
