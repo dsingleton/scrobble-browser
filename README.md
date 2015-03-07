@@ -1,4 +1,4 @@
-# Scrobble Browser
+# Scrobble Browser [![Build Status](https://travis-ci.org/dsingleton/scrobble-browser.svg)](https://travis-ci.org/dsingleton/scrobble-browser)
 
 Browse and explore your [exported scrobbles](https://secure.last.fm/settings/dataexporter).
 
