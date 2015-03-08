@@ -13,12 +13,14 @@
   <tbody>
   <% @scrobbles.each do |scrobble| %>
     <tr>
-      <td><%= scrobble.user.username %></td>
+      <td><%= link_to scrobble.user.username, scrobble %></td>
       <td><%= scrobble.listened_at %></td>
-      <td><%= scrobble.artist.name %></td>
-      <td><%= scrobble.track.name %></td>
-      <td><%= scrobble.album.name %></td>
+      <td><%= link_to scrobble.artist.name, scrobble.artist %></td>
+      <td><%= link_to scrobble.track.name, [scrobble.artist, scrobble.track] %></td>
+      <td><%= link_to scrobble.album.name, [scrobble.artist, scrobble.album] if scrobble.album %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @scrobbles %>

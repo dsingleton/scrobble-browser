@@ -1,5 +1,5 @@
 class ScrobblesController < ApplicationController
   def index
-    @scrobbles = Scrobble.all.order(listened_at: :desc)
+    @scrobbles = Scrobble.paginate(:page => params[:page]).order(listened_at: :desc)
   end
 end
