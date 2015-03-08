@@ -4,4 +4,6 @@ class Artist < ActiveRecord::Base
 
   has_many :tracks
   has_many :albums, -> { uniq }, through: :tracks
+
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end
