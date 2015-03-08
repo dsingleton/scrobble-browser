@@ -12,18 +12,19 @@ namespace :import do
     field_names, *scrobbles = CSV.read(tsv_filepath, { :col_sep => "\t" })
 
     scrobbles.each do |scrobble|
-      datetime, _, track, track_mbid, artist, artist_mbid, album, album_mbid, *_ = scrobble
+      datetime, _, track, track_mbid, artist, artist_mbid, _, _, _, _, album, album_mbid, *_ = scrobble
+
       Scrobble.create(
         listened_at: datetime,
         user: user,
-        track:Track.find_or_create_by(
+        track: Track.find_or_create_by(
           name: track,
           mbid: track_mbid,
           artist: Artist.find_or_create_by(
             name: artist,
             mbid: artist_mbid
           ),
-          album: Album.find_or_create_by(
+          album: album.present? && Album.find_or_create_by(
             name: album,
             mbid: album_mbid
           )
