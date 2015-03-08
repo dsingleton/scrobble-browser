@@ -1,6 +1,8 @@
 # Scrobble Browser [![Build Status](https://travis-ci.org/dsingleton/scrobble-browser.svg)](https://travis-ci.org/dsingleton/scrobble-browser)
 
-Browse and explore your [exported scrobbles](https://secure.last.fm/settings/dataexporter).
+Last.fm allows you to [export your scrobbling history](https://secure.last.fm/settings/dataexporter), but you can't do much with them on their own.
+
+This is a rails app that can import that data and provide an interface to explore it
 
 ## Running
 
@@ -10,4 +12,8 @@ It comes with some example data, which you can load with `rake db:fixtures:load`
 
 ## Importing Scrobbles
 
-TBD
+First, [export your scrobbling history](https://secure.last.fm/settings/dataexporter), extract the download and find `data/scrobbles.tsv`.
+
+To import that data into the application run:
+
+```bundle exec rake import:from_tsv USERNAME=yourusername PATH=/path/to/scrobbles.tsv```
