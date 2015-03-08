@@ -13,23 +13,29 @@ namespace :import do
 
     scrobbles.each do |scrobble|
       datetime, _, track, track_mbid, artist, artist_mbid, _, _, _, _, album, album_mbid, *_ = scrobble
+      puts "#{artist} - #{track} (#{album})"
 
-      Scrobble.create(
-        listened_at: datetime,
-        user: user,
-        track: Track.find_or_create_by(
-          name: track,
-          mbid: track_mbid,
-          artist: Artist.find_or_create_by(
-            name: artist,
-            mbid: artist_mbid
-          ),
-          album: album.present? && Album.find_or_create_by(
-            name: album,
-            mbid: album_mbid
+      begin
+        Scrobble.create!(
+          listened_at: datetime,
+          user: user,
+          track: Track.find_or_create_by!(
+            name: track,
+            mbid: track_mbid,
+            artist: Artist.find_or_create_by!(
+              name: artist,
+              mbid: artist_mbid
+            )
+            ## Album disabled, DB model doesn't support a track on many albums
+            # album: album.present? && Album.find_or_create_by!(
+            #   name: album,
+            #   mbid: album_mbid
+            # )
           )
         )
-      )
+      rescue => e
+        binding.pry
+      end
     end
   end
 end
