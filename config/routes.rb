@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
 
+  get 'charts/artist' => 'charts#artist'
+  get 'charts/track' => 'charts#track'
+
   resources :artists, only: [:index, :show] do
     resources :albums, only: [:index, :show]
     resources :tracks, only: [:index, :show]
