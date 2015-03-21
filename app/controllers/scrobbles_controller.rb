@@ -1,5 +1,5 @@
 class ScrobblesController < ApplicationController
   def index
-    @scrobbles = Scrobble.paginate(:page => params[:page]).includes(:user, :track, :artist).order(listened_at: :desc)
+    @scrobbles = Scrobble.recent.with_joins.paginate(:page => params[:page])
   end
 end

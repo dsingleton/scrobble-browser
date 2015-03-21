@@ -7,6 +7,7 @@ class Artist < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
+  scope :alphabetized, -> { order('lower(name)') }
   scope :chart, -> {
     select('artists.*, COUNT(1) AS plays')
     .joins(:scrobbles)

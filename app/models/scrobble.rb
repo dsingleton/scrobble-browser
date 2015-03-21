@@ -5,4 +5,7 @@ class Scrobble < ActiveRecord::Base
   has_one :artist, through: :track
 
   validates :user, :track, :listened_at, presence: true
+
+  scope :recent, -> { order(listened_at: :desc) }
+  scope :with_joins, -> { includes(:user, :track, :artist) }
 end
