@@ -2,7 +2,7 @@ class TracksController < ApplicationController
   before_action :artist
 
   def index
-    @tracks = @artist.tracks
+    @tracks = @artist.tracks.alphabetized
   end
 
   def show

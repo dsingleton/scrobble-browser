@@ -10,6 +10,7 @@ class Track < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { scope: :artist, case_sensitive: false }
 
+  scope :alphabetized, -> { order('lower(name)') }
   scope :chart, -> {
     select('tracks.*, COUNT(1) AS plays')
     .joins(:scrobbles)
