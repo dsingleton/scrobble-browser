@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321102956) do
+ActiveRecord::Schema.define(version: 20150321104129) do
 
   create_table "artists", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20150321102956) do
     t.datetime "updated_at"
     t.integer  "artist_id"
   end
+
+  add_index "tracks", ["artist_id"], name: "index_tracks_on_artist_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username",   limit: 255
