@@ -1,3 +1,5 @@
+require "erb"
+
 class Artist < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :finders
@@ -17,5 +19,9 @@ class Artist < ActiveRecord::Base
 
   def user_chart
     User.chart.where(:scrobbles => {track: Track.first})
+  end
+
+  def lastfm_link
+    "http://www.last.fm/music/#{ERB::Util.url_encode(name)}"
   end
 end

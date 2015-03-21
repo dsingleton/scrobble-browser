@@ -2,3 +2,9 @@
   <%= link_to_artist @artist %>
   &ndash; <%= @track.name %>
 </h1>
+
+<nav>
+  <ol>
+    <li><a href="<%= @track.lastfm_link %>">View on Last.fm</li>
+  </ol>
+</nav>

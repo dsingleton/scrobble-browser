@@ -1,3 +1,9 @@
 <h1><%= @artist.name %></h1>
 
+<nav>
+  <ol>
+    <li><a href="<%= @artist.lastfm_link %>">View on Last.fm</li>
+  </ol>
+</nav>
+
 <p><%= link_to "Tracks", artist_tracks_path(@artist) %></p>
