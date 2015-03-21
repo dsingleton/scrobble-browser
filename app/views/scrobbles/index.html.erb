@@ -7,7 +7,6 @@
       <th>Played At</th>
       <th>Artist</th>
       <th>Track</th>
-      <th>Album</th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +16,6 @@
       <td><%= scrobble.listened_at %></td>
       <td><%= link_to scrobble.artist.name, scrobble.artist %></td>
       <td><%= link_to scrobble.track.name, [scrobble.artist, scrobble.track] %></td>
-      <td><%= link_to scrobble.album.name, [scrobble.artist, scrobble.album] if scrobble.album %></td>
     </tr>
   <% end %>
   </tbody>

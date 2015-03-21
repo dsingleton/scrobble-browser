@@ -12,8 +12,8 @@ namespace :import do
     field_names, *scrobbles = CSV.read(tsv_filepath, { :col_sep => "\t" })
 
     scrobbles.each do |scrobble|
-      datetime, _, track, track_mbid, artist, artist_mbid, _, _, _, _, album, album_mbid, *_ = scrobble
-      puts "#{artist} - #{track} (#{album})"
+      datetime, _, track, track_mbid, artist, artist_mbid, *_ = scrobble
+      puts "#{artist} - #{track}"
 
       begin
         Scrobble.create!(
@@ -26,11 +26,6 @@ namespace :import do
               name: artist,
               mbid: artist_mbid
             )
-            ## Album disabled, DB model doesn't support a track on many albums
-            # album: album.present? && Album.find_or_create_by!(
-            #   name: album,
-            #   mbid: album_mbid
-            # )
           )
         )
       rescue => e

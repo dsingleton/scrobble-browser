@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'charts/track' => 'charts#track'
 
   resources :artists, only: [:index, :show] do
-    resources :albums, only: [:index, :show]
     resources :tracks, only: [:index, :show]
   end
 

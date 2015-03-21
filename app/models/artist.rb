@@ -3,7 +3,6 @@ class Artist < ActiveRecord::Base
   friendly_id :name, use: :finders
 
   has_many :tracks
-  has_many :albums, -> { uniq }, through: :tracks
   has_many :scrobbles, through: :tracks
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
@@ -14,4 +13,8 @@ class Artist < ActiveRecord::Base
     .group('artists.id')
     .order('plays DESC')
   }
+
+  def user_chart
+    User.chart.where(:scrobbles => {track: Track.first})
+  end
 end

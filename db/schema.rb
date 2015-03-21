@@ -11,23 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307212813) do
+ActiveRecord::Schema.define(version: 20150321102956) do
 
-  create_table "albums", force: true do |t|
-    t.string   "name"
-    t.string   "mbid"
+  create_table "artists", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "mbid",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "artists", force: true do |t|
-    t.string   "name"
-    t.string   "mbid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "scrobbles", force: true do |t|
+  create_table "scrobbles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "track_id"
     t.datetime "listened_at"
@@ -38,17 +31,16 @@ ActiveRecord::Schema.define(version: 20150307212813) do
   add_index "scrobbles", ["track_id"], name: "index_scrobbles_on_track_id"
   add_index "scrobbles", ["user_id"], name: "index_scrobbles_on_user_id"
 
-  create_table "tracks", force: true do |t|
-    t.string   "name"
-    t.string   "mbid"
+  create_table "tracks", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "mbid",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "artist_id"
-    t.integer  "album_id"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "username"
+  create_table "users", force: :cascade do |t|
+    t.string   "username",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
