@@ -15,7 +15,7 @@
       <td><%= link_to_user scrobble.user %></td>
       <td><%= link_to_track scrobble.track %></td>
       <td><%= link_to_artist scrobble.artist %></td>
-      <td><%= scrobble.listened_at %></td>
+      <td><%= time_tag scrobble.listened_at, format: :long %></td>
     </tr>
   <% end %>
   </tbody>
