@@ -12,8 +12,8 @@ Rails.application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
-  # Configure static asset server for tests with Cache-Control for performance.
-  config.serve_static_assets  = true
+  # Configure static file server for tests with Cache-Control for performance.
+  config.serve_static_files  = true
   config.static_cache_control = 'public, max-age=3600'
 
   # Show full error reports and disable caching.
@@ -36,4 +36,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Prevent deprecation warning. Default will change to :random in Rails 5
+  config.active_support.test_order = :random
 end
