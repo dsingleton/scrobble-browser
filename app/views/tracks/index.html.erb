@@ -1,11 +1,11 @@
 <h1>
-  <%= link_to @artist.name, @artist %>
+  <%= link_to_artist @artist %>
   &ndash;
   Tracks
 </h1>
 
 <ol>
 <% @tracks.each do |track| %>
-  <li><%= link_to track.name, [@artist, track] %></li>
+  <li><%= link_to_track track %></li>
 <% end %>
 </ol>

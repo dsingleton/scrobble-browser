@@ -13,8 +13,8 @@
   <% @track_chart.each_with_index do |track, index| %>
     <tr>
       <td><%= index + 1 %></td>
-      <td><%= link_to track.name, [track.artist, track] %></td>
-      <td><%= link_to track.artist.name, track.artist %></td>
+      <td><%= link_to_track track %></td>
+      <td><%= link_to_artist track.artist %></td>
       <td><%= number_with_delimiter(track.plays) %></td>
     </tr>
   <% end %>

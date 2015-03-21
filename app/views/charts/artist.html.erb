@@ -12,7 +12,7 @@
   <% @artist_chart.each_with_index do |artist, index| %>
     <tr>
       <td><%= index + 1 %></td>
-      <td><%= link_to artist.name, artist %></td>
+      <td><%= link_to_artist artist %></td>
       <td><%= number_with_delimiter(artist.plays) %></td>
     </tr>
   <% end %>
