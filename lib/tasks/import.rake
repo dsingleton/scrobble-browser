@@ -21,7 +21,6 @@ namespace :import do
           user: user,
           track: Track.find_or_create_by!(
             name: track,
-            mbid: track_mbid,
             artist: Artist.find_or_create_by!(
               name: artist,
               mbid: artist_mbid

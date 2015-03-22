@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321104129) do
+ActiveRecord::Schema.define(version: 20150322184239) do
 
   create_table "artists", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20150321104129) do
 
   create_table "tracks", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.string   "mbid",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "artist_id"
