@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   get 'charts/artist' => 'charts#artist'
   get 'charts/track' => 'charts#track'
 
-  resources :artists, only: [:index, :show] do
-    resources :tracks, only: [:index, :show]
+  constraints(id: /.+/) do
+    resources :artists, only: [:index, :show] do
+      resources :tracks, only: [:index, :show]
+    end
   end
 
   root 'home#index'

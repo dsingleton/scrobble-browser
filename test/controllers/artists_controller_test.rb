@@ -7,8 +7,7 @@ class ArtistsControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-    artist = Artist.first
-    get :show, {id: artist.id}
+    get :show, {id: "Dntel"}
     assert_response :success
   end
 
