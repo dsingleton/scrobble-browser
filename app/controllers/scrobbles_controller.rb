@@ -1,5 +1,9 @@
 class ScrobblesController < ApplicationController
   def index
-    @scrobbles = Scrobble.recent.with_joins.paginate(:page => params[:page])
+    @scrobbles = Scrobble.recent.with_joins
+    if params['user_id'] && @user = User.find(params['user_id'])
+      @scrobbles = @scrobbles.where(user: @user)
+    end
+    @scrobbles = @scrobbles.paginate(:page => params[:page])
   end
 end
