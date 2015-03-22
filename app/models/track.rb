@@ -1,9 +1,6 @@
 require "erb"
 
 class Track < ActiveRecord::Base
-  extend FriendlyId
-  friendly_id :name, use: :finders
-
   belongs_to :artist
   has_many :scrobbles
   has_many :listeners, through: :scrobbles, source: :user
