@@ -8,4 +8,17 @@ class Scrobble < ActiveRecord::Base
 
   scope :recent, -> { order(listened_at: :desc) }
   scope :with_joins, -> { includes(:user, :track, :artist) }
+
+  def self.by_user(user)
+    where(user: user)
+  end
+
+  def self.in_year(year)
+    date = DateTime.new(year)
+    self.in_range(date.beginning_of_year, date.end_of_year)
+  end
+
+  def self.in_range(from, to)
+    where("listened_at >= ? and listened_at <= ?", from, to)
+  end
 end

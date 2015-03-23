@@ -14,12 +14,4 @@ class User < ActiveRecord::Base
     .group('users.id')
     .order('plays DESC')
   }
-
-  def track_chart
-    Track.chart.where(scrobbles: {user: self})
-  end
-
-  def artist_chart
-    Artist.chart.where(scrobbles: {user: self})
-  end
 end
