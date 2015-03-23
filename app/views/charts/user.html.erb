@@ -1,0 +1,20 @@
+<h1>Uer Chart</h1>
+
+<table class="chart">
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>User</th>
+      <th>Plays</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @user_chart.each_with_index do |user, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= link_to_user user %></td>
+      <td><%= number_with_delimiter(user.plays) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

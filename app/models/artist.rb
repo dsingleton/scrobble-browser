@@ -6,6 +6,7 @@ class Artist < ActiveRecord::Base
 
   has_many :tracks
   has_many :scrobbles, through: :tracks
+  has_many :listeners, through: :scrobbles, source: :user
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
