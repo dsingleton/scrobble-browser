@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :artists, through: :scrobbles
 
   scope :chart, -> {
-    select('users.*, COUNT(1) AS plays').group('users.id').order('plays DESC')
+    select('users.*, COUNT(1) AS plays')
+    .group('users.id')
+    .order('plays DESC')
   }
 end

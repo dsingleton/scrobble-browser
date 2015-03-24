@@ -18,6 +18,6 @@ class TracksController < ApplicationController
     @artist = Artist.find(params[:artist_id])
     @track = @artist.tracks.find(params[:id])
     @scrobbles = @track.scrobbles.recent.includes(:user, :track, :artist).limit(5)
-    @users = @track.users
+    @users = @track.users.chart
   end
 end
