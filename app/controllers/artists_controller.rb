@@ -1,6 +1,14 @@
 class ArtistsController < ApplicationController
   def index
-    @artists = Artist.alphabetized.paginate(:page => params[:page])
+    @artists = Artist.all
+
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      raise
+      @artists = @user.artists.chart
+    end
+
+    @artists = @artists.paginate(:page => params[:page])
   end
 
   def show

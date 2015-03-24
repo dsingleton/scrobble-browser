@@ -1,35 +1,24 @@
 Rails.application.routes.draw do
 
-  resources :scrobbles, only: [:index, :show]
-
-  resources :users, only: [:index, :show] do
+  concern :scrobble_list do
     resources :scrobbles, only: [:index]
-    member do
-      get 'artists' => 'charts#artist'
-      get 'tracks' => 'charts#track'
-    end
+  end
+  concern :user_list do
+    resources :users, only: [:index]
+  end
+  concern :artist_list do
+    resources :artists, only: [:index]
+  end
+  concern :track_list do
+    resources :tracks, only: [:index]
   end
 
-  get 'charts/artist' => 'charts#artist'
-  get 'charts/track' => 'charts#track'
-  get 'charts/user' => 'charts#user'
+  resources :scrobbles, only: [:index, :show]
+  resources :users, only: [:index, :show], concerns: [:scrobble_list, :artist_list, :track_list]
 
   constraints(id: /.+/) do
-    resources :artists, only: [:index, :show] do
-
-      resources :tracks, only: [:index, :show] do
-        resources :scrobbles, only: [:index]
-        member do
-          get 'users' => 'charts#user', type: 'track'
-        end
-      end
-
-      # Has to go after track routes, so they get higher precidence
-      resources :scrobbles, only: [:index]
-      member do
-        get 'users' => 'charts#user', type: 'artist'
-        get 'tracks2' => 'charts#track', type: 'artist'
-      end
+    resources :artists, only: [:index, :show], concerns: [:scrobble_list, :user_list] do
+      resources :tracks, only: [:index, :show], concerns: [:scrobble_list, :user_list]
     end
   end
 
