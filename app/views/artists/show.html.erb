@@ -11,3 +11,23 @@
 </nav>
 
 
+<table>
+  <thead>
+    <tr>
+      <%= content_tag 'th', 'User' unless @user %>
+      <%= content_tag 'th', 'Track' unless @track %>
+      <%= content_tag 'th', 'Artist' unless @artist %>
+      <th>Played At</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @scrobbles.each do |scrobble| %>
+    <tr>
+      <%= content_tag 'td', link_to_user(scrobble.user) unless @user %>
+      <%= content_tag 'td', link_to_track(scrobble.track) unless @track %>
+      <%= content_tag 'td', link_to_artist(scrobble.artist) unless @artist %>
+      <td><%= time_tag scrobble.listened_at, format: :long %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
