@@ -1,16 +1,5 @@
 <h1>Scrobbles</h1>
 
-<div class="breadcrumb">
-  <%= link_to_user(@user) if @user %>
-
-  <% if @artist %>
-    <%= link_to_artist(@artist) %>
-    <% if @track %>
-      &mdash; <%= link_to_track(@track) %>
-    <% end %>
-  <% end %>
-</div>
-
 <table>
   <thead>
     <tr>
