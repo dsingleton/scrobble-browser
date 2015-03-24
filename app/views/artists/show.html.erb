@@ -3,7 +3,11 @@
 <nav>
   <ol>
     <li><a href="<%= @artist.lastfm_link %>">View on Last.fm</li>
+    <li><%= link_to "All tracks", artist_tracks_path(@artist) %></li>
+    <li><%= link_to "Top tracks", tracks2_artist_path(@artist) %></li>
+    <li><%= link_to "Scrobbles", artist_scrobbles_path(@artist) %></li>
+    <li><%= link_to "Listeners", users_artist_path(@artist) %></li>
   </ol>
 </nav>
 
-<p><%= link_to "Tracks", artist_tracks_path(@artist) %></p>
+

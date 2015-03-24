@@ -1,20 +1,31 @@
 <h1>Scrobbles</h1>
 
+<div class="breadcrumb">
+  <%= link_to_user(@user) if @user %>
+
+  <% if @artist %>
+    <%= link_to_artist(@artist) %>
+    <% if @track %>
+      &mdash; <%= link_to_track(@track) %>
+    <% end %>
+  <% end %>
+</div>
+
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Track</th>
-      <th>Artist</th>
+      <%= content_tag 'th', 'User' unless @user %>
+      <%= content_tag 'th', 'Track' unless @track %>
+      <%= content_tag 'th', 'Artist' unless @artist %>
       <th>Played At</th>
     </tr>
   </thead>
   <tbody>
   <% @scrobbles.each do |scrobble| %>
     <tr>
-      <td><%= link_to_user scrobble.user %></td>
-      <td><%= link_to_track scrobble.track %></td>
-      <td><%= link_to_artist scrobble.artist %></td>
+      <%= content_tag 'td', link_to_user(scrobble.user) unless @user %>
+      <%= content_tag 'td', link_to_track(scrobble.track) unless @track %>
+      <%= content_tag 'td', link_to_artist(scrobble.artist) unless @artist %>
       <td><%= time_tag scrobble.listened_at, format: :long %></td>
     </tr>
   <% end %>
