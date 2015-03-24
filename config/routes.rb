@@ -22,5 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :tracks, only: [:index]
+
   root 'home#index'
 end

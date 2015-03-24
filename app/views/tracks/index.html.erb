@@ -1,11 +1,25 @@
 <h1>
-  <%= link_to_artist @artist %>
-  &ndash;
   Tracks
 </h1>
 
-<ol>
-<% @tracks.each do |track| %>
-  <li><%= link_to_track track %></li>
-<% end %>
-</ol>
+
+<table class="chart">
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Track</th>
+      <%= content_tag 'th', 'Artist' unless @artist %>
+      <th>Plays</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @tracks.each_with_index do |track, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= link_to_track track %></td>
+      <%= content_tag 'td', link_to_artist(track.artist) unless @artist %>
+      <td><%= number_with_delimiter(track.plays) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

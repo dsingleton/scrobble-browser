@@ -1,11 +1,10 @@
 class ArtistsController < ApplicationController
   def index
-    @artists = Artist.all
+    @artists = Artist.all.joins(:scrobbles).chart
 
     if params[:user_id]
       @user = User.find(params[:user_id])
-      raise
-      @artists = @user.artists.chart
+      @artists = @user.artists.select('artists.*, COUNT(1) AS plays').group('artists.id').order('plays DESC')
     end
 
     @artists = @artists.paginate(:page => params[:page])

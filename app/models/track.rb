@@ -13,8 +13,6 @@ class Track < ActiveRecord::Base
   scope :alphabetized, -> { order('lower(name)') }
   scope :chart, -> {
     select('tracks.*, COUNT(1) AS plays')
-    .joins(:scrobbles)
-    .includes(:artist)
     .group('tracks.id')
     .order('plays DESC')
   }
