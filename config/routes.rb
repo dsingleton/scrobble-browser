@@ -16,16 +16,19 @@ Rails.application.routes.draw do
 
   constraints(id: /.+/) do
     resources :artists, only: [:index, :show] do
+
       resources :tracks, only: [:index, :show] do
+        resources :scrobbles, only: [:index]
         member do
           get 'users' => 'charts#user', type: 'track'
         end
       end
 
-      # Has to go track routes, so they get higher precidence
+      # Has to go after track routes, so they get higher precidence
+      resources :scrobbles, only: [:index]
       member do
         get 'users' => 'charts#user', type: 'artist'
-        get 'track-chart' => 'charts#track', type: 'artist'
+        get 'tracks2' => 'charts#track', type: 'artist'
       end
     end
   end

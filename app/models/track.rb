@@ -6,7 +6,6 @@ class Track < ActiveRecord::Base
 
   belongs_to :artist
   has_many :scrobbles
-  has_many :listeners, through: :scrobbles, source: :user
 
   validates :name, presence: true, uniqueness: { scope: :artist, case_sensitive: false }
 
