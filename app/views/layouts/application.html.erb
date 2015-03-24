@@ -8,6 +8,22 @@
 </head>
 <body>
 
+
+<div class="breadcrumb">
+  <a href="/">Home</a>
+
+  <% if @user %>
+    / <%= link_to_user(@user)%>
+  <% end %>
+
+  <% if @artist %>
+    / <%= link_to_artist(@artist) %>
+    <% if @track %>
+      / <%= link_to_track(@track) %>
+    <% end %>
+  <% end %>
+</div>
+
 <%= yield %>
 
 </body>
