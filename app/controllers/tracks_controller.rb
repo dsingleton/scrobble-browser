@@ -7,6 +7,8 @@ class TracksController < ApplicationController
 
   def show
     @track = @artist.tracks.find(params[:id])
+    @scrobbles = @track.scrobbles.recent.includes(:user, :track, :artist).limit(5)
+    @users = @track.users
   end
 
 private
