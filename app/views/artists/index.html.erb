@@ -1,19 +1,19 @@
 <h1>Artists</h1>
 
-<table class="chart">
+<table class="artists chart">
   <thead>
     <tr>
-      <th>Position</th>
-      <th>Artist</th>
-      <th>Plays</th>
+      <th class="position">Position</th>
+      <th class="artist">Artist</th>
+      <th class="plays">Plays</th>
     </tr>
   </thead>
   <tbody>
   <% @artists.each_with_index do |artist, index| %>
     <tr>
-      <td><%= index + 1 %></td>
+      <td><%= @artists.offset + index + 1 %></td>
       <td><%= link_to_artist artist %></td>
-      <td><%= number_with_delimiter(artist.plays) %></td>
+      <td><%= build_chart(artist, @artists) %></td>
     </tr>
   <% end %>
   </tbody>

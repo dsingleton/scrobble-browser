@@ -11,9 +11,9 @@
   <tbody>
   <% @users.each_with_index do |user, index| %>
     <tr>
-      <td><%= index + 1 %></td>
+      <td><%= @users.offset + index + 1 %></td>
       <td><%= link_to_user user %></td>
-      <td><%= number_with_delimiter(user.plays) %></td>
+      <td><%= build_chart(user, @users) %></td>
     </tr>
   <% end %>
   </tbody>

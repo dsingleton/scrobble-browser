@@ -3,22 +3,22 @@
 </h1>
 
 
-<table class="chart">
+<table class="tracks chart">
   <thead>
     <tr>
-      <th>Position</th>
-      <th>Track</th>
-      <%= content_tag 'th', 'Artist' unless @artist %>
-      <th>Plays</th>
+      <th class="position">Position</th>
+      <th class="track">Track</th>
+      <%= content_tag 'th', 'Artist', class: "artist" unless @artist %>
+      <th class="plays">Plays</th>
     </tr>
   </thead>
   <tbody>
   <% @tracks.each_with_index do |track, index| %>
     <tr>
-      <td><%= index + 1 %></td>
+      <td><%= @tracks.offset + index + 1 %></td>
       <td><%= link_to_track track %></td>
       <%= content_tag 'td', link_to_artist(track.artist) unless @artist %>
-      <td><%= number_with_delimiter(track.plays) %></td>
+      <td><%= build_chart(track, @tracks) %></td>
     </tr>
   <% end %>
   </tbody>
