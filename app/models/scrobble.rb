@@ -8,10 +8,6 @@ class Scrobble < ActiveRecord::Base
 
   scope :recent, -> { order(listened_at: :desc) }
 
-  def self.by_user(user)
-    where(user: user)
-  end
-
   def self.in_year(year)
     date = DateTime.new(year)
     self.in_range(date.beginning_of_year, date.end_of_year)

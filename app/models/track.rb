@@ -17,10 +17,6 @@ class Track < ActiveRecord::Base
     .order('plays DESC')
   }
 
-  def user_chart
-    User.chart.where(:scrobbles => {track: Track.first})
-  end
-
   def lastfm_link
     "#{artist.lastfm_link}/_/#{ERB::Util.url_encode(name)}"
   end

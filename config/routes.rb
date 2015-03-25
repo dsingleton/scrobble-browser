@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :tracks, only: [:index]
   end
 
-  resources :scrobbles, only: [:index, :show]
+  resources :scrobbles, only: [:index]
   resources :users, only: [:index, :show], concerns: [:scrobble_list, :artist_list, :track_list]
 
   constraints(id: /.+/) do
