@@ -3,7 +3,7 @@
 </h1>
 
 
-<table class="chart">
+<table class="tracks chart">
   <thead>
     <tr>
       <th class="position">Position</th>
@@ -18,7 +18,7 @@
       <td><%= @tracks.offset + index + 1 %></td>
       <td><%= link_to_track track %></td>
       <%= content_tag 'td', link_to_artist(track.artist) unless @artist %>
-      <td><%= number_with_delimiter track.plays %></td>
+      <td><%= build_chart(track, @tracks) %></td>
     </tr>
   <% end %>
   </tbody>

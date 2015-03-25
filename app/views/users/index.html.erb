@@ -3,17 +3,17 @@
 <table class="chart">
   <thead>
     <tr>
-      <th>Position</th>
-      <th>User</th>
-      <th>Plays</th>
+      <th class="position">Position</th>
+      <th class="user">User</th>
+      <th class="plays">Plays</th>
     </tr>
   </thead>
   <tbody>
   <% @users.each_with_index do |user, index| %>
     <tr>
-      <td><%= index + 1 %></td>
+      <td><%= @users.offset + index + 1 %></td>
       <td><%= link_to_user user %></td>
-      <td><%= number_with_delimiter(user.plays) %></td>
+      <td><%= build_chart(user, @users) %></td>
     </tr>
   <% end %>
   </tbody>

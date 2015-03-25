@@ -1,0 +1,25 @@
+table.chart {
+
+  th.position {
+    width: 5%;
+    visibility: hidden;
+  }
+
+  th.track,
+  th.artist,
+  th.user {
+    width: 35%;
+  }
+  th.plays {
+    width: 25%;
+    max-width: 25%;
+  }
+
+  .bar {
+    display: inline-block;
+    min-width: 5em;
+    padding: 1px 5px;
+    color: #fff;
+    background: dodgerBlue;
+  }
+}

@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
-      <%= content_tag 'th', 'User' unless @user %>
-      <%= content_tag 'th', 'Track' unless @track %>
-      <%= content_tag 'th', 'Artist' unless @artist %>
+      <%= content_tag 'th', 'User', class: 'user' unless @user %>
+      <%= content_tag 'th', 'Track', class: 'track' unless @track %>
+      <%= content_tag 'th', 'Artist', class: 'artist' unless @artist %>
       <th>Played At</th>
     </tr>
   </thead>
