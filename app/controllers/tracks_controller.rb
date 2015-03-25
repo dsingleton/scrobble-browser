@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :set_scoped_resource
+  include ResourceScoped
 
   def index
     @tracks = tracks.includes(:artist).chart.paginate(:page => params[:page])
@@ -22,25 +22,6 @@ private
       @resource.tracks
     else
       Track.all.joins(:scrobbles)
-    end
-  end
-
-  def set_scoped_resource
-    @resource = scoped_resource
-  end
-
-  def scoped_resource
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-    elsif params[:artist_id]
-      @artist = Artist.find(params[:artist_id])
-      if params[:track_id]
-        @track = @artist.tracks.find(params[:track_id])
-      else
-        @artist
-      end
-    else
-      nil
     end
   end
 end
