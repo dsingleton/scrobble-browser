@@ -6,11 +6,11 @@
   <ol>
     <li><a href="<%= @track.lastfm_link %>">View on Last.fm</li>
     <li><%= link_to "Scrobbles", artist_track_scrobbles_path(@artist, @track) %></li>
-    <li><%= link_to "Listeners", artist_track_users_path(@artist, @track) %></li>
+    <li><%= link_to "Users", artist_track_users_path(@artist, @track) %></li>
   </ol>
 </nav>
 
-<h2>Top Listeners</h1>
+<h2>Top Users</h1>
 
 <table class="chart">
   <thead>

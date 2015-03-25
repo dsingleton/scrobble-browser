@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = users.paginate(:page => params[:page])
+    @users = users.chart.paginate(:page => params[:page])
   end
 
   def show
@@ -10,16 +10,28 @@ class UsersController < ApplicationController
 private
 
   def users
-    if params[:artist_id]
+    resource = scoped_resource
+    case resource
+    when Artist
+    when Track
+      resource.users
+    else
+      User.joins(:scrobbles)
+    end
+  end
+
+  def scoped_resource
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    elsif params[:artist_id]
       @artist = Artist.find(params[:artist_id])
       if params[:track_id]
         @track = @artist.tracks.find(params[:track_id])
-        @track.users.chart
       else
-        @artist.users.chart
+        @artist
       end
     else
-      User.joins(:scrobbles).chart
+      nil
     end
   end
 end
