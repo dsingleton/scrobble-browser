@@ -16,4 +16,14 @@ class TracksControllerTest < ActionController::TestCase
     get :show, {artist_id: "Dntel", id: "Umbrella"}
     assert_response :success
   end
+
+  test "index scoped to used should hide user" do
+    get :index, {user_id: User.first}
+    assert_select 'th', {text: 'User', count: 0}
+  end
+
+  test "index scoped to used should hide artist" do
+    get :index, {artist_id: Artist.first}
+    assert_select 'th', {text: 'Artist', count: 0}
+  end
 end
