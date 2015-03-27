@@ -6,22 +6,16 @@ class Track < ActiveRecord::Base
 
   belongs_to :artist
   has_many :scrobbles
-  has_many :listeners, through: :scrobbles, source: :user
+  has_many :users, through: :scrobbles
 
   validates :name, presence: true, uniqueness: { scope: :artist, case_sensitive: false }
 
   scope :alphabetized, -> { order('lower(name)') }
   scope :chart, -> {
     select('tracks.*, COUNT(1) AS plays')
-    .joins(:scrobbles)
-    .includes(:artist)
     .group('tracks.id')
     .order('plays DESC')
   }
-
-  def user_chart
-    User.chart.where(:scrobbles => {track: Track.first})
-  end
 
   def lastfm_link
     "#{artist.lastfm_link}/_/#{ERB::Util.url_encode(name)}"

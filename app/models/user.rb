@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
 
   scope :chart, -> {
     select('users.*, COUNT(1) AS plays')
-    .joins(:scrobbles)
     .group('users.id')
     .order('plays DESC')
   }

@@ -7,11 +7,6 @@ class Scrobble < ActiveRecord::Base
   validates :user, :track, :listened_at, presence: true
 
   scope :recent, -> { order(listened_at: :desc) }
-  scope :with_joins, -> { includes(:user, :track, :artist) }
-
-  def self.by_user(user)
-    where(user: user)
-  end
 
   def self.in_year(year)
     date = DateTime.new(year)

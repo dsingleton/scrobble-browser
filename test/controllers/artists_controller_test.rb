@@ -11,4 +11,9 @@ class ArtistsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get index for user scope" do
+    get :index, {user_id: User.first}
+    assert_response :success
+  end
+
 end

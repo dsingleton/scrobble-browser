@@ -11,4 +11,13 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get index scoped to artist" do
+    get :index, {artist_id: Artist.first}
+    assert_response :success
+  end
+
+  test "should get index scoped to track" do
+    get :index, {artist_id: Artist.first, track_id: Artist.first.tracks.first}
+    assert_response :success
+  end
 end
