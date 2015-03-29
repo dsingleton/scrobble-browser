@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   include NestableResource
+  include FilterableResource
 
   def index
-    @users = users.chart.paginate(:page => params[:page])
+    @users = apply_filters(users.chart)
+    @users = @users.paginate(:page => params[:page])
   end
 
   def show

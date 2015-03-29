@@ -10,12 +10,16 @@ class Artist < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
-  scope :alphabetized, -> { order('lower(name)') }
+  scope :alphabetized, -> { reorder('lower(artists.name)') }
   scope :chart, -> {
     select('artists.*, COUNT(1) AS plays')
     .group('artists.id')
     .order('plays DESC')
   }
+
+  def self.search_by_name(name)
+    where('artists.name LIKE ?', "%#{name}%")
+  end
 
   def lastfm_link
     "http://www.last.fm/music/#{ERB::Util.url_encode(name)}"

@@ -1,8 +1,11 @@
 class TracksController < ApplicationController
   include NestableResource
+  include FilterableResource
 
   def index
-    @tracks = tracks.includes(:artist).chart.paginate(:page => params[:page])
+    @tracks = apply_filters(tracks.includes(:artist).chart)
+    @tracks = @tracks.paginate(:page => params[:page])
+
   end
 
   def show

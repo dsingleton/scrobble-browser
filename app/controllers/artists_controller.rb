@@ -1,8 +1,10 @@
 class ArtistsController < ApplicationController
   include NestableResource
+  include FilterableResource
 
   def index
-    @artists = artists.chart.paginate(:page => params[:page])
+    @artists = apply_filters(artists.chart)
+    @artists = @artists.paginate(:page => params[:page])
   end
 
   def show
@@ -10,6 +12,7 @@ class ArtistsController < ApplicationController
   end
 
 private
+
   def artists
     if @resource
       @resource.artists
