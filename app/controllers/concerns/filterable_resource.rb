@@ -23,6 +23,8 @@ private
       before: -> (relation, before) { relation.merge(Scrobble.before(parse_date_param(before))) },
       after: -> (relation, after) { relation.merge(Scrobble.after(parse_date_param(after))) }
     }
+    # raise
+    filters.slice(:year, :before, :after) if self.class
   end
 
   def parse_date_param(date_param)

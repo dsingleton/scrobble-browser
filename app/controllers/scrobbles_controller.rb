@@ -1,11 +1,14 @@
 class ScrobblesController < ApplicationController
   include NestableResource
+  include FilterableResource
 
   def index
-    @scrobbles = scrobbles.recent.includes(:user, :track, :artist).paginate(:page => params[:page])
+    @scrobbles = apply_filters(scrobbles.recent.includes(:user, :track, :artist))
+    @scrobbles = @scrobbles.paginate(:page => params[:page])
   end
 
 private
+
   def scrobbles
     if @resource
       @resource.scrobbles
