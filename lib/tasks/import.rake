@@ -1,5 +1,5 @@
 require "csv"
-require "pry"
+require 'scrobble_importer'
 
 namespace :import do
   desc "Import a user's scrobbles from TSV (options: USERNAME=name PATH=path/to/scrobbles/tsv)"
@@ -9,27 +9,9 @@ namespace :import do
     tsv_filepath = ENV['PATH']
 
     user = User.find_or_create_by(username: username)
-    field_names, *scrobbles = CSV.read(tsv_filepath, { :col_sep => "\t" })
+    headers, *scrobbles = CSV.read(tsv_filepath, { :col_sep => "\t" })
 
-    scrobbles.each do |scrobble|
-      datetime, _, track, track_mbid, artist, artist_mbid, *_ = scrobble
-      puts "#{artist} - #{track}"
-
-      begin
-        Scrobble.create!(
-          listened_at: datetime,
-          user: user,
-          track: Track.find_or_create_by!(
-            name: track,
-            artist: Artist.find_or_create_by!(
-              name: artist,
-              mbid: artist_mbid
-            )
-          )
-        )
-      rescue => e
-        binding.pry
-      end
-    end
+    importer = ScrobbleImporter.new
+    importer.import(user, scrobbles)
   end
 end
