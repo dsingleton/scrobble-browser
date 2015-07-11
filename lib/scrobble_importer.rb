@@ -12,13 +12,18 @@ private
     Scrobble.create!(
       listened_at: datetime,
       user: user,
-      track: Track.find_or_create_by!(
-        name: track,
-        artist: Artist.find_or_create_by!(
-          name: artist,
-          mbid: artist_mbid
-        )
+      track: find_or_create_track(
+        find_or_create_artist(artist, artist_mbid),
+        track
       )
     )
+  end
+
+  def find_or_create_artist(name, mbid)
+    Artist.where('lower(name) = ?', name.downcase).first_or_create(name: name, mbid: mbid)
+  end
+
+  def find_or_create_track(artist, name)
+    Track.where('lower(name) = ?', name.downcase).where(artist: artist).first_or_create(name: name, artist: artist)
   end
 end
