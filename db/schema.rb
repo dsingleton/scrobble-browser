@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322184239) do
+ActiveRecord::Schema.define(version: 20150711223423) do
 
   create_table "artists", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150322184239) do
     t.datetime "updated_at"
   end
 
+  add_index "scrobbles", ["listened_at"], name: "listened_at_index"
   add_index "scrobbles", ["track_id"], name: "index_scrobbles_on_track_id"
   add_index "scrobbles", ["user_id"], name: "index_scrobbles_on_user_id"
 
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150322184239) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "artist_id"
+    t.string   "mbid"
   end
 
   add_index "tracks", ["artist_id"], name: "index_tracks_on_artist_id"

@@ -14,7 +14,8 @@ private
       user: user,
       track: find_or_create_track(
         find_or_create_artist(artist, artist_mbid),
-        track
+        track,
+        track_mbid
       )
     )
   end
@@ -23,7 +24,7 @@ private
     Artist.where('lower(name) = ?', name.downcase).first_or_create(name: name, mbid: mbid)
   end
 
-  def find_or_create_track(artist, name)
-    Track.where('lower(name) = ?', name.downcase).where(artist: artist).first_or_create(name: name, artist: artist)
+  def find_or_create_track(artist, name, mbid)
+    Track.where('lower(name) = ?', name.downcase).where(artist: artist).first_or_create(name: name, artist: artist, mbid: mbid)
   end
 end
