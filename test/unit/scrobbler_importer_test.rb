@@ -30,24 +30,4 @@ class ScrobbleImporterTest < ActiveSupport::TestCase
     assert_equal '598bc2a9-1a27-4f6a-a7cc-30649303edca', first_scrobble.track.mbid
   end
 
-  test "Importing raw scrobbles are created" do
-
-    scrobble_data = [
-      ['2015-03-08T14:13:00+00:00', 1425823980, 'Wildest Dreams', '598bc2a9-1a27-4f6a-a7cc-30649303edca', 'Taylor Swift', '20244d07-534f-4eff-b4d4-930878889970', '', '', '', '', '1989 (Deluxe)', '', '', 'spotify'],
-    ]
-
-    user = User.create(username: 'tester')
-
-    importer = ScrobbleImporter.new
-    importer.import(user, scrobble_data)
-
-    scrobble = Scrobble.last
-    raw_scrobble = scrobble.raw
-
-    assert_equal 'spotift', raw_scrobble.application second_scrobble.listened_at
-    assert_equal 'Taylor Swift', second_scrobble.artist.name
-    assert_equal '20244d07-534f-4eff-b4d4-930878889970', first_scrobble.artist.mbid
-    assert_equal 'Wildest Dreams', second_scrobble.track.name
-    assert_equal '598bc2a9-1a27-4f6a-a7cc-30649303edca', first_scrobble.track.mbid
-  end
 end
