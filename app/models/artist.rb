@@ -17,6 +17,14 @@ class Artist < ActiveRecord::Base
     .order('plays DESC')
   }
 
+  def self.find_by_name(name)
+    self.where("lower(name) = lower(?)", name).first
+  end
+
+  def self.find_by_name!(name)
+    self.find_by_name(name) or raise ActiveRecord::RecordNotFound
+  end
+
   def lastfm_link
     "http://www.last.fm/music/#{ERB::Util.url_encode(name)}"
   end

@@ -17,6 +17,14 @@ class Track < ActiveRecord::Base
     .order('plays DESC')
   }
 
+  def self.find_by_name(name)
+    self.where("lower(name) = lower(?)", name).first
+  end
+
+  def self.find_by_name!(name)
+    self.find_by_name(name) or raise ActiveRecord::RecordNotFound
+  end
+
   def lastfm_link
     "#{artist.lastfm_link}/_/#{ERB::Util.url_encode(name)}"
   end

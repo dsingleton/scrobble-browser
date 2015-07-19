@@ -6,8 +6,8 @@ class TracksController < ApplicationController
   end
 
   def show
-    @artist = Artist.find(params[:artist_id])
-    @track = @artist.tracks.find(params[:id])
+    @artist = Artist.find_by_name!(params[:artist_id])
+    @track = @artist.tracks.find_by_name!(params[:id])
   end
 
 private

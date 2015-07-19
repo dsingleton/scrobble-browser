@@ -15,9 +15,9 @@ private
     if params[:user_id]
       @user = User.find(params[:user_id])
     elsif params[:artist_id]
-      @artist = Artist.find(params[:artist_id])
+      @artist = Artist.find_by_name!(params[:artist_id])
       if params[:track_id]
-        @track = @artist.tracks.find(params[:track_id])
+        @track = @artist.tracks.find_by_name!(params[:track_id])
       else
         @artist
       end

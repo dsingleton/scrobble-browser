@@ -6,9 +6,15 @@ class ArtistsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get show" do
+  test "should find artist for known artist" do
     get :show, {id: "Dntel"}
     assert_response :success
+  end
+
+  test "should 404 when showing unknown artist" do
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get :show, {id: "Dntelxxx"}
+    end
   end
 
   test "should get index for user scope" do

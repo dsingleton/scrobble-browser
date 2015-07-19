@@ -12,9 +12,21 @@ class TracksControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should 404 when showing unknown artist" do
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get :index, {artist_id: "aaa"}
+    end
+  end
+
   test "should get show for artist scope" do
     get :show, {artist_id: "Dntel", id: "Umbrella"}
     assert_response :success
+  end
+
+  test "should 404 when showing unknown track" do
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get :show, {artist_id: "Dntel", id: "Umbrellaaa"}
+    end
   end
 
   test "index scoped to used should hide user" do
